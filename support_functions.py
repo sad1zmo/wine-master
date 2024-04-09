@@ -1,6 +1,5 @@
 from datetime import datetime
 import pandas
-from pprint import pprint
 import collections
 
 
@@ -33,5 +32,3 @@ def get_formated_data(list_of_dicts):
         category = wine_info['Категория']
         wine_dict[category].append(wine_info)
     return wine_dict
-
-# pprint(get_formated_data(get_information_from_exel("wine.xlsx", "Лист1")).keys())
