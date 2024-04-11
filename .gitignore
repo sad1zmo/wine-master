@@ -17,6 +17,7 @@ poetry.lock
 
 wine.xlsx
 index.html
+share/
 
 
 # Distribution / packaging
