@@ -23,7 +23,7 @@ def main():
 
     rendered_page = template.render(
         years=get_company_years(),
-        single_or_plural=get_single_or_plural_years(get_company_years()),
+        number_of_years=get_single_or_plural_years(get_company_years()),
         catalog=catalog,
         )
 
