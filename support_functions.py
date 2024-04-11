@@ -9,7 +9,7 @@ def get_company_years():
     return now_year - open_years
 
 
-def is_year_single_or_plural(years):
+def get_single_or_plural_years(years):
     if years % 10 == 1 and years % 100 != 11:
         return "год"
     elif 2 <= years % 10 <= 4 and (years % 100 < 10 or years % 100 >= 20):
@@ -18,17 +18,17 @@ def is_year_single_or_plural(years):
         return "лет"
 
 
-def get_information_from_exel(filepath, sheet_name):
+def get_products_from_exel(filepath, sheet_name):
     excel_data_df = pandas.read_excel(filepath, sheet_name=sheet_name,
                                       na_values=[' ', 'N/A', 'NA'],
                                       keep_default_na=False)
-    drink_records = excel_data_df.to_dict(orient='records')
-    return drink_records
+    products = excel_data_df.to_dict(orient='records')
+    return products
 
 
-def get_formated_drinks_data(records_about_drinks):
-    formated_drinks_info = collections.defaultdict(list)
-    for record_describe in records_about_drinks:
-        category = record_describe['Категория']
-        formated_drinks_info[category].append(record_describe)
-    return formated_drinks_info
+def get_catalog_of_products(products):
+    catalog_of_products = collections.defaultdict(list)
+    for product in products:
+        category = product['Категория']
+        catalog_of_products[category].append(product)
+    return catalog_of_products

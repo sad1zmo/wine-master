@@ -1,8 +1,8 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from support_functions import get_company_years, \
-                              is_year_single_or_plural, \
-                              get_information_from_exel, \
-                              get_formated_drinks_data
+                              get_single_or_plural_years, \
+                              get_products_from_exel, \
+                              get_catalog_of_products
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from environs import Env
 
@@ -18,13 +18,13 @@ def main():
     )
 
     template = jinja_env.get_template('template.html')
-    formated_drinks_info = get_formated_drinks_data(
-            get_information_from_exel(exel_filepath, exel_sheet_name))
+    catalog = get_catalog_of_products(
+            get_products_from_exel(exel_filepath, exel_sheet_name))
 
     rendered_page = template.render(
         years=get_company_years(),
-        single_or_plural=is_year_single_or_plural(get_company_years()),
-        wines_date_for_template=formated_drinks_info,
+        single_or_plural=get_single_or_plural_years(get_company_years()),
+        wines_date_for_template=catalog,
         )
 
     with open('index.html', 'w', encoding='utf8') as file:
