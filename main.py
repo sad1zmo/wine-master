@@ -24,7 +24,7 @@ def main():
     rendered_page = template.render(
         years=get_company_years(),
         single_or_plural=get_single_or_plural_years(get_company_years()),
-        wines_date_for_template=catalog,
+        catalog=catalog,
         )
 
     with open('index.html', 'w', encoding='utf8') as file:
